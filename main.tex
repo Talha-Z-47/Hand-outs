@@ -1,0 +1,303 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\geometry{margin=1in}
+\linespread{1.5}  % Adjusts line spacing
+\setlength{\parskip}{6pt}  % Controls spacing between paragraphs
+\setlength{\textwidth}{6.5in}
+\setlength{\parskip}{1.5cm}
+
+\vspace{1cm}
+ % Required for inserting images
+\usepackage{lineno}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{How Does Calculus Describe Motion?}
+
+\fancyfoot[C]{\thepage}
+
+\title{\Huge \textbf{How Does Calculus Describe Motion?}\\
+\vspace{0.3cm}
+\large \textit{\textbf{A way to measure changes}}}
+\author{Talha Zobair\\
+BDOAA Nat' Camper '24, '25}
+\date{June 2025}
+
+\begin{document}
+
+%--- Title Page ---
+\maketitle
+\vspace{4cm}
+%\begin{center}
+\includegraphics[width=0.7\textwidth] % Replace with your figure
+\newpage
+\newpage
+\begin{abstract}
+    This hand-out will try to provide a very good knowledge about the Calculus. It will help one to strengthen the basics of calculus through understanding some pretty practical usage of it. (i.e. changes in objects' velocity, acceleration, distance and so on.) It will help the high school students (especially who are at junior year or sophomore) who are just new to the topic, calculus. Also, the Olympians struggling with understanding of it or who wants to know the practical use of it will get a pretty good ideas about it. I have used python to generate and visualize the graphs that are needed in specific sectors.
+\end{abstract}
+%--- Page 2: Introduction ---
+\section*{Introduction}
+
+In physics, motion is when an object changes its position with respect to a reference point in a given time. Motion is mathematically described in terms of displacement, distance, velocity, acceleration, speed, and frame of reference to an observer, measuring the change in position of the body relative to that frame with a change in time.\footnote{\url{https://en.wikipedia.org/wiki/Motion} }Modern physics holds that, as there is no absolute frame of reference, Isaac Newton's concept of absolute motion cannot be determined.\footnote{ Wahlin, Lars (1997). "9.1 Relative and absolute motion" (PDF). The Deadbeat Universe. Boulder} Everything in the universe can be considered to be in motion \footnote{Tyson, Neil de Grasse; Charles Tsun-Chu Liu; Robert Irion (2000). One Universe : at home in the cosmos. Washington, DC: National Academy Press. ISBN 978-0-309-06488-0}. Motions can be categorized in different category such as simple harmonic motion, linear motion, circular motion, ocsillatory, projectile and so on.
+
+
+
+Motion is being studied mathematically to predict a particle or object's movement (e.g. the Earth orbiting around the Sun). In higher physics, motion is often described in three dimensions using a vector-valued function of time ($\vec{v}(t)$). The position vector, $\vec{r}$ of an object can be written as:
+\[
+\vec{r}(t) = x(t) \hat{i} + y(t)\hat{j} + z(t) \hat{k}
+\]
+ The velocity is the derivative of position with respect to time:
+\[
+\vec{v} (t) = \frac{d\vec{r}}{dt} = \vec{v_x}(t)\hat{i}+ \vec{v_y}(t) \hat{j} + \vec{v_z}(t) \hat{k}
+\]
+For simplicity, we will only discuss motion in one or in two dimensions.\\
+Now, if we talk about calculus--  it has two branches one is \textit{differentiation} and other is \textit{integration}. In differentiation, we try to break down a single thing into many tiny pieces where all the small pieces have uniform characteristics and all pieces are identical as well behave in a same way (for example, cutting a steel rod into equivalent small pieces).\\
+In the contrary, integration is the reverse form of differentiation. It is used to sum all the small pieces found from differentiation-- combining the pieces of the rod back into a complete rod.\\
+So, from this we can learn that calculus allows us to work with the smaller part of a large system, making complex problems easier to solve. Also, we can use it measure the small changes-- changes in motions, sizes, masses and more. 
+
+In this hand-out, we are mainly going to learn about how can we use calculus to find the changes in motions and find the value of summing changes of them-- using both differentiation and integration.
+
+
+
+
+\newpage
+
+%--- Page 3: Motion and Position ---
+\section*{Motion and Position: Setting the Scene}
+To define what motion is more clearly, we can simply imagine a car starting to travel from a point along a straight line with respect of frame of reference, which describes where the object is located along a straight line (1D motion). Here are some different perspectives following:
+\begin{itemize}
+    \item If the car always has a uniform velocity throughout the journey, the distance covered by it after a time, $t$ will be, $x(t) = x_0 + v \cdot t$ 
+    \item Again, if it has a constant acceleration, the position will be, $x(t) = x_0 +v_0t + \frac{1}{2}a t^2$  
+\end{itemize}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+Time \( t \) (s) & Position \( x(t) \) (m) \\
+\hline
+0 & \( 0 \) \\
+1 & \( 2(1) + \frac{1}{2}(1)^2 = 2.5 \) \\
+2 & \( 2(2) + \frac{1}{2}(2)^2 = 6 \) \\
+3 & \( 2(3) + \frac{1}{2}(3)^2 = 10.5 \) \\
+4 & \( 2(4) + \frac{1}{2}(4)^2 = 16 \) \\
+5 & \( 2(5) + \frac{1}{2}(5)^2 = 22.5 \) \\
+\hline
+\end{tabular}
+\caption{Position as a function of time for \( v_0 = 2\,\text{m/s}, a = 1\,\text{m/s}^2, \text{and}\ x_0 = 0\, \text{m} \)}
+\label{Table 1}
+\end{table}
+
+We plotted the data of Table \ref{Table 1} to visualize the motion of a car with a uniform acceleration in figure \ref{fig:enter-label}. Which shows it is a parabolic graph. However, if it had a uniform velocity, it would have been a linear slope.
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{position_vs_time_plot.png}
+
+    \caption{Here's the graph of the equation, $x(t) = v_0t + \frac{1}{2}a t^2$ with $v_0 = 2 m/s$ and $a=1m/s^2$}
+    \label{fig:enter-label}
+\end{figure}
+
+
+
+\newpage
+
+%--- Pages 4-6: Derivatives ---
+\section*{Derivatives: Understanding Change}
+
+
+\addcontentsline{toc}{section}{Derivatives: Understanding Change}
+
+\subsection*{What is a Derivative?}
+As we can see in the Figure \ref{fig:enter-label} that it has a curve. The slope of it at any point, $m= x(t)/t =v(t)$ depicts the rate of how fast the car is moving at that moment (at infinitesimal time)-- that slope is the derivative.\\
+This is called instantaneous velocity — the speed at a specific instant:
+\[
+v(t) = \frac{dx}{dt}
+\]
+
+
+\subsection*{Visual Example}
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{velocity_tangent_curve.png}
+    \caption{Plot of the position function, $x(t) =x_0 +v_0t+ \frac{1}{2} at^2$; $x_0=1$ m, $v_0 = 2$ m/s and $a=1 m/s^2$ In the graph below, the tangent line shows the instantaneous velocity at time $t_0=2$.}
+    \label{fig:niga}
+\end{figure}
+In Figure \ref{fig:niga}, we have plotted a position function, 
+\[
+x(t) =x_0 +v_0\,t+ \frac{1}{2} at^2
+\] 
+Where, $x(t)$ is the position of a object after $t$ times; $x_0$ is the initial position; $v_0$ is the initial velocity and $a$ is the constant acceleration.\\
+The derivative of the position function $dx/dt$ is the slope of the tangent to the position-time graph at any point, $t_0$ which is called the instantaneous velocity.
+
+.
+\subsection*{Examples}
+As things are still \textit{foggy}, now we are going to make it very clear.\\\\
+    Suppose a car (or any other object as an example) starts from an initial position, $x_0=0 $ m, has an initial velocity, $v_0=2$ m/s, and has a constant acceleration of $a=2 m/s^2$. After a time, $t$ the total distance covered by it will be:
+    \[x(t) = v_0\,t + \frac{1}2{at^2}\]
+    And at the instantaneous time, $t$  the instantaneous velocity of it will be the derivative of the position function, $x(t)$.
+    By differentiating the position function, we get:
+    \[ \frac{d}{dt}x = \frac{d}{dt}(v_0\, t+\frac{1}{2}at^2)\]
+    \[\Rightarrow  v (t) = v_0 + \frac{1}{2}\cdot2 at\]
+    \[\Rightarrow v(t) = v_0 +a\,t\]
+
+    Here, we have used the power and linearity law of derivation,
+    \[ \frac{d}{dx} x^n=nx^{n-1}\quad \text{ (power rule)}\]
+    \[ \frac{d}{dx}[c\cdot f(x)]= c\cdot \frac{d}{dx}f(x) \quad   \text{(linearity law)}\]
+Now, we can get the instantaneous velocity at time $t$ by plugging the numerators (e.g. at $t=3s, \quad v=8$ m/s)
+
+ 
+
+\newpage
+
+%--- Pages 7-8: Second Derivative ---
+\section*{Second Derivative: Acceleration}
+
+Since, acceleration is the change of velocity over time, we can write the acceleration at any time $t$ as a change of instantaneous velocity over an infinitesimal time such as:
+\[
+a(t) = \dot{v} = \frac{dv}{dt}
+\]
+Again, here we know that the instantaneous velocity is the change of distance,$x$ over an infinitesimal time,$t$. 
+\[ dv=\frac{dx}{dt}\]
+Thus, we can write:
+\[
+a(t) = \frac{dv}{dt} =\frac{d^2x}{dt^2}
+\]
+Which is called the second derivative. So, we can write the acceleration as the second derivative of $x$.
+\addcontentsline{toc}{section}{Second Derivative: Acceleration}
+
+Acceleration as the rate of change of velocity:
+\[
+a(t) = \frac{dv}{dt} = \frac{d^2 x}{dt^2}.
+\]
+\textbf{Example}:
+Let's assume an object is moving following the position function,$x(t)=t^3$,
+So, the acceleration of it will be the second derivative of $x(t)$, following:
+\[a(t) =\frac{d^2}{dt^2}x(t) = \frac{d^2}{dt^2}t^3\]
+The first derivative of it is:
+\[v(t) = \frac{dx}{dt}=3t^2\]
+The second derivative:
+\[a(t)=\frac{dv}{dt}=6t\]
+Now anyone can solve it by plugging in the numerical values.
+Here in figure \ref{fig:2}, we have plotted a grpah for a free fall object due to gravitational force (a constant acceleration).
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{Free_fall_curve.png}
+    \caption{Graph for free fall under gravity, where the gravitation acceleration remains constant but the position changes in a power rate and velocity changes in a constant rate}
+    \label{fig:2}
+\end{figure}
+\newpage
+
+%--- Pages 9-10: Integrals ---
+\section*{Integrals: Accumulating Change}
+Integration is another fundamental branch of calculus, where it is often thought to be the process of finding derivatives is reversed. In differentiating, we used to find the infinitesimal change of something and integration allows us to find the total change over an interval by accumulating these tiny (infinitesimal) changes.\\\\
+   Again, the differentiation breaks a motion or a change into small parts, and the integration adds them together to appreciate what the total effect is, big or small, it still depends on the situation.\\
+ Previously we have defined the differentiation as a slope of a function. Now, by integrating we can get the area under a straight line or curve made by a particular function.\\
+ So when do we need to measure the area of a straight line or curve created by a function? We used to find it to get the multiplication of the $x$ and $y$ axes (for example, to find the total distance we, $x$ we estimate $v$ times $t$--- so in a graph of velocity-time graph, we can find the distance covered between two fixed time by integrating it over an infinitesimal time.\\
+ We can write the relationship as follows:
+ \[
+ \int dx =\int_{t_1}^{t_2}v(t)dt   
+ \]
+  \[\text{or,}\Delta x = \int_{t_1}^{t_2}v(t)dt \] 
+  Where, $v(t)$ is the function of velocity in terms of time.
+
+  Again, it goes same to find the velocity from a function of acceleration in terms of $t$ ($a(t)$ as velocity as the velocity is the multiplication of the acceleration and the given time, which can be written as:
+  \[\Delta v = \int_{t_1}^{t_2} a(t) dt.\]
+
+\textbf{Example}: Calculate displacement with constant velocity within time, $t_1$ and $t_2$:\\
+As we got previously,
+\[ \Delta x =\int_{t_1}^{t_2}v(t)dt\]
+\[= v \int_{t_1}^{t_2}dt \]
+\[=v\  \, t\bigg|_{t_1}^{t_2}  \]
+\[=v \cdot (t_2-t_1) \]
+So, the result is $\Delta x = v\ (t_2-t_1)$ 
+
+
+%--- Pages 11-12: Real-World Applications ---
+\section*{Real-World Applications}
+\addcontentsline{toc}{section}{Real-World Applications}
+
+\textbf{Example 1: Car acceleration} \\
+\textbf{Problem:}\\
+A car accelerates from rest at a constant rate of $a = 2 \, \text{m/s}^2$ for 5 seconds.\\
+How far does it travel during that time?\\
+\textbf{Integral Setup:}\\
+\[
+\Delta x = \int_0^5 v(t) \, dt = \int_0^5 at \, dt
+\]
+\[
+= 2 \int_0^5 t \, dt = 2 \cdot \frac{t^2}{2} \bigg|_0^5 = \left. t^2 \right|_0^5 = 25 \, \text{m}
+\]\\
+\textbf{Example 2: Throwing a ball upward} \\
+\textbf{Problem:}
+A ball is thrown vertically upward with an initial velocity of $v_0 = 20 \, \text{m/s}$.
+How high does it rise before coming to rest?
+(Use $g = 9.8 \, \text{m/s}^2$, and ignore air resistance.)
+\textit{Integral Setup:}
+\[
+\Delta x = \int_0^T v(t) \, dt = \int_0^T (v_0 - g t) \, dt
+\]
+Find $T$ where $v(T) = 0$:\\
+\[
+0 = v_0 - gT \Rightarrow T = \frac{v_0}{g} = \frac{20}{9.8}
+\]\\
+Now integrate:
+\[
+\Delta x = \int_0^{20/9.8} (20 - 9.8t) \, dt\]
+\[= \left[ 20t - \frac{9.8t^2}{2} \right]_0^{20/9.8} = \frac{400}{9.8} - \frac{9.8}{2} \cdot \left(\frac{400}{96.04} \right)\]\\
+(Simplify or compute for exact height $\approx 20.4$ m)
+
+
+%--- Page 13: Graph Analysis Practice ---
+
+
+%--- Page 14: Summary and Takeaways ---
+\section*{Summary \& Takeaways}
+\addcontentsline{toc}{section}{Summary and Takeaways}
+
+\begin{itemize}
+    \item Derivatives describe instantaneous rates of change.
+    \item Integrals give total accumulated change.
+    \item Calculus links position, velocity, and acceleration.
+    
+\end{itemize}
+\newpage
+
+%--- Page 15: Further Reading ---
+\section*{Further Reading and Resources}
+\addcontentsline{toc}{section}{Further Reading and Resources}
+
+\textbf{Videos:}
+\begin{itemize}
+    \item 3Blue1Brown – Essence of Calculus: \url{https://www.youtube.com/watch?v=WUvTyaaNkzM}
+    \item Khan Academy Calculus Playlist: \url{https://www.khanacademy.org/math/calculus-1}
+\end{itemize}
+
+\textbf{Interactive Tools:}
+\begin{itemize}
+    \item Desmos Graphing Calculator: \url{https://www.desmos.com/calculator}
+    \item GeoGebra: \url{https://www.geogebra.org/}
+\end{itemize}
+
+\textbf{Books:}
+\begin{itemize}
+    \item \textit{Calculus Made Easy} by Silvanus P. Thompson
+    \item \textit{The Calculus Lifesaver} by Adrian Banner
+\end{itemize}
+
+\vspace{1cm}
+Contact me at: \texttt{talha.zobair047@gmail.com} \\
+
+
+\end{document}
